@@ -6,7 +6,7 @@ configure do
 end
 
 get '/' do
-  
+  redirect '/index.html'
 end
 
 get '/tiles/:version/:zoom_level/:column/:row' do
