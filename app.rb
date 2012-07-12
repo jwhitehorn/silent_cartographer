@@ -16,6 +16,8 @@ get '/tiles/:version/:zoom_level/:column/:row' do
   max_tile = 2 ** zoom_level 
   row = max_tile - params[:row].to_i
   
-  content_type :jpeg
-  db.get_first_value("select tile_data from tiles where zoom_level=? and tile_column=? and tile_row=?", zoom_level, column, row)
+  image = db.get_first_value("select tile_data from tiles where zoom_level=? and tile_column=? and tile_row=?", zoom_level, column, row)
+  image.tap do |i| 
+    i.nil? ? status(400) : content_type(:jpeg)
+  end
 end
