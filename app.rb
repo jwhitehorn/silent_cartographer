@@ -9,7 +9,7 @@ get '/' do
   redirect '/index.html'
 end
 
-get '/tiles/:version/:zoom_level/:column/:row' do
+get '/tiles/:zoom_level/:column/:row' do
   db = SQLite3::Database.new("map.mbtiles")
   column = params[:column].to_i
   zoom_level = params[:zoom_level].to_i
