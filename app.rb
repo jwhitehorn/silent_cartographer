@@ -1,5 +1,6 @@
 require 'sinatra'
 require 'sqlite3'
+require './lib/mbtile.rb'
 
 configure do
   mime_type :jpeg, 'image/jpeg'
@@ -10,13 +11,14 @@ get '/' do
 end
 
 get '/tiles/:zoom_level/:column/:row' do
-  db = SQLite3::Database.new("map.mbtiles")
+  mbtile = Mbtile.new("map.mbtiles")
+  
   column = params[:column].to_i
   zoom_level = params[:zoom_level].to_i
   max_tile = 2 ** zoom_level 
   row = max_tile - params[:row].to_i
   
-  image = db.get_first_value("select tile_data from tiles where zoom_level=? and tile_column=? and tile_row=?", zoom_level, column, row)
+  image = mbtile.get_tile({ :column => column, :zoom_level => zoom_level, :row => row })
   image.tap do |i| 
     i.nil? ? status(404) : content_type(:jpeg)
   end
