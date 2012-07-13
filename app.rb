@@ -18,6 +18,6 @@ get '/tiles/:zoom_level/:column/:row' do
   
   image = db.get_first_value("select tile_data from tiles where zoom_level=? and tile_column=? and tile_row=?", zoom_level, column, row)
   image.tap do |i| 
-    i.nil? ? status(400) : content_type(:jpeg)
+    i.nil? ? status(404) : content_type(:jpeg)
   end
 end
