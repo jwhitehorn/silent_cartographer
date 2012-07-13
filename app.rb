@@ -6,7 +6,7 @@ configure do
 end
 
 get '/' do
-  redirect '/index.html'
+  erb :index
 end
 
 get '/tiles/:zoom_level/:column/:row' do
