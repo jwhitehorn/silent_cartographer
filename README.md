@@ -5,13 +5,22 @@ A Sinatra based [MBTiles](https://github.com/mapbox/mbtiles-spec/) server.
 
 ## Getting Started ##
 
+### Requirements ###
+
+Silent Cartographer depdends on several other software packages. Fortunately, most of those dependencies are managed for you.
+
 If you don't already have [RVM](https://rvm.io), install that first. Then:
 
 * Download the latest build of Silent Cartographer from [here](https://github.com/jwhitehorn/silent_cartographer/zipball/master), or `git clone https://github.com/jwhitehorn/silent_cartographer.git`
 * cd into silent_cartographer - RVM will prompt you, please read and agree.
 * `ruby -v` should confirm that you are running Ruby 1.9.2, if not, something is wrong with RVM.
 * Install gems `gem install bundler && bundle install`
-* Copy your desired `.mbtiles` file to `map.mbtiles` in the root of the silent_cartographer directory
+
+### Configuration ###
+
+Lukily there isn't much to configure, as the MBTile format itself takes care of several of the details. To configure Silent Cartographer, you'll simply need to specify the location of your MBTiles file. By default, the app looks for a file called `map.mbtiles` in the application's root. You can either copy/rename your own MBTiles to `map.mbtiles`, or you can edit the `config/database.rb` configuration file and specify your own path.
+
+### Running the app ###
 
 You are now done setting up the app. To launch it now, or any time in the future, simply `rackup`! You will be greeted with somthing similar to:
 

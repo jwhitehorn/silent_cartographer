@@ -3,7 +3,7 @@ get '/' do
 end
 
 get '/tiles/:zoom_level/:column/:row' do
-  @@mbtile ||= Mbtile.new("map.mbtiles")
+  @@mbtile ||= Mbtile.new(settings.database)
   
   column = params[:column].to_i
   zoom_level = params[:zoom_level].to_i
