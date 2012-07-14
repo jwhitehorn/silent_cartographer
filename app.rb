@@ -4,6 +4,7 @@ require './lib/mbtile.rb'
 
 configure do
   mime_type :jpeg, 'image/jpeg'
+  mime_type :png,  'image/png'
 end
 
 get '/' do
@@ -20,6 +21,6 @@ get '/tiles/:zoom_level/:column/:row' do
   
   image = mbtile.get_tile({ :column => column, :zoom_level => zoom_level, :row => row })
   image.tap do |i| 
-    i.nil? ? status(404) : content_type(:jpeg)
+    i.nil? ? status(404) : content_type(mbtile.tile_format)
   end
 end
