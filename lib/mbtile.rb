@@ -1,3 +1,5 @@
+require 'sqlite3'
+
 class Mbtile
   
   def initialize(connection_string)

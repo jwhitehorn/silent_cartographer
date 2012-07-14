@@ -1,5 +1,4 @@
 require 'sinatra'
-require 'sqlite3'
 require './lib/mbtile.rb'
 
 configure do
