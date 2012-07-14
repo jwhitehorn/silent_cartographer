@@ -1,6 +1,3 @@
-require 'sinatra'
-require './lib/mbtile.rb'
-
 configure do
   mime_type :jpeg, 'image/jpeg'
   mime_type :png,  'image/png'
