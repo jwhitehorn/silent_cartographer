@@ -3,6 +3,24 @@
 
 A Sinatra based [MBTiles](https://github.com/mapbox/mbtiles-spec/) server.
 
+## Getting Started ##
+
+If you don't already have [RVM](https://rvm.io), install that first. Then:
+
+* Download the latest build of Silent Cartographer from [here](https://github.com/jwhitehorn/silent_cartographer/zipball/master), or `git clone https://github.com/jwhitehorn/silent_cartographer.git`
+* cd into silent_cartographer - RVM will prompt you, please read and agree.
+* `ruby -v` should confirm that you are running Ruby 1.9.2, if not, something is wrong with RVM.
+* Install gems `gem install bundler`, and then `bundle install`
+* Copy your desired `.mbtiles` file to `map.mbtiles` in the root of the silent_cartographer directory
+
+You are now done setting up the app. To launch it now, or any time in the future, simply `rackup`! You will be greeted with somthing similar to:
+
+    >> Thin web server (v1.4.1 codename Chromeo)
+    >> Maximum connections set to 1024
+    >> Listening on 0.0.0.0:9292, CTRL+C to stop
+    
+In this case, you'd point your web browser to http://localhost:9292 to see your maps.
+
 ## License ##
 
 Copyright (c) 2012, [Jason Whitehorn](https://github.com/jwhitehorn) 
