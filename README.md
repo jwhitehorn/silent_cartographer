@@ -30,6 +30,65 @@ You are now done setting up the app. To launch it now, or any time in the future
     
 In this case, you'd point your web browser to http://localhost:9292 to see your maps.
 
+## Scaling ##
+
+For best scalability, you will want to run multiple thin servers. Instead of starting the application with `rackup`, try `thin -s4 -p 5000 start` (or similar) instead.
+
+
+### nginx ###
+
+Once we're running more than one thin server, let's use nginx to proxy those requests to localhost for us:
+
+    user www-data;
+    worker_processes  4;
+
+    error_log  /var/log/nginx/error.log;
+    pid        /var/run/nginx.pid;
+
+    events {
+        worker_connections  4096;
+    }
+
+    http {
+        include       /etc/nginx/mime.types;
+        access_log	/var/log/nginx/access.log;
+
+        sendfile        on;
+        keepalive_timeout  65;
+        tcp_nodelay        on;
+
+        gzip  on;
+        server {
+            server_name maps.example.com maps1.example.com; 
+            listen 80;
+            location / {
+                proxy_pass http://127.0.0.1:5000; 
+            } 
+        }
+        server {
+            server_name maps2.example.com;
+            listen 80;
+            location / {
+                proxy_pass http://127.0.0.1:5001;
+            }
+        }
+        server {
+            server_name maps3.example.com;
+            listen 80;
+            location / {
+                proxy_pass http://127.0.0.1:5002;
+            }
+        }
+        server {
+            server_name maps4.example.com;
+            listen 80;
+            location / {
+                proxy_pass http://127.0.0.1:5003;
+            }
+        }
+
+    }
+
 ## License ##
 
 Copyright (c) 2012, [Jason Whitehorn](https://github.com/jwhitehorn) 
