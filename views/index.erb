@@ -18,6 +18,7 @@
 
   var map = po.map()
       .container(document.getElementById("map").appendChild(po.svg("svg")))
+      .center({lat: 36.1529, lon: -95.9857})
       .add(po.interact())
       .add(po.hash());
 
