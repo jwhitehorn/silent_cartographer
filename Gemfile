@@ -1,5 +1,10 @@
 source 'http://rubygems.org'
 
 gem 'sinatra'
-gem 'thin'
-gem 'sqlite3'
+
+if defined?(JRUBY_VERSION)
+  gem 'jdbc-sqlite3'
+else
+  gem 'sqlite3'
+  gem 'thin'
+end
