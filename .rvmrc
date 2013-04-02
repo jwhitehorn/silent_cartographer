@@ -1,1 +1,2 @@
+#rvm --create use jruby@silent_cartographer
 rvm --create use 1.9.2-p290@silent_cartographer
